@@ -12,19 +12,19 @@ pipeline {
     stages {
         stage ('Checking') {
         steps {
-            
-            sh 'terraform --version'
-            dir("vpc") {
-                withCredentials([aws(credentialsId: 'aws-creds')]) {
-                    sh 'aws --version'
-                    sh 'aws s3 ls'   
-                    sh '''
-                        terraform init
-                        terraform plan -no-color
-                        '''        
+                sh 'terraform --version'
+                dir("vpc") {
+                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
+                        sh '''
+                            terraform init
+                            terraform get -update
+                            terraform plan -no-color
+                        '''     
+                        input(message: 'Apply now?', ok: 'Yes')   
+                        sh 'terraform apply --no-color --auto-approve'
+                    }
                 }
             }
-        }
         }
     }
 }
