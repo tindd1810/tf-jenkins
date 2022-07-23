@@ -20,7 +20,7 @@ pipeline {
                     sh 'aws s3 ls'   
                     sh '''
                         terraform init
-                        terraform plan
+                        terraform plan -no-color
                         '''        
                 }
             }
