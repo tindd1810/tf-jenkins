@@ -12,10 +12,13 @@ pipeline {
     stages {
         stage ('Checking') {
         steps {
+            
             sh 'terraform --version'
             dir("vpc") {
-            sh 'aws --version'
-            sh 'aws s3 ls'
+                withCredentials([aws(credentialsId: 'aws-creds')]) {
+                sh 'aws --version'
+                sh 'aws s3 ls'           
+         }
             }
         }
         }
