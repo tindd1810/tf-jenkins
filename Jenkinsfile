@@ -64,18 +64,6 @@ pipeline {
                     }
                 }
 
-                dir("vpc") {
-                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
-                        sh '''
-                            terraform init
-                            terraform get -update
-                            terraform plan -no-color
-                        '''     
-                        input(message: 'Apply now?', ok: 'Yes')   
-                        sh 'terraform destroy -no-color -auto-approve'
-                    }
-                }
-
             }
         }
     }
