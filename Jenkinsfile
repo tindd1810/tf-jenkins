@@ -16,9 +16,10 @@ pipeline {
             sh 'terraform --version'
             dir("vpc") {
                 withCredentials([aws(credentialsId: 'aws-creds')]) {
-                sh 'aws --version'
-                sh 'aws s3 ls'           
-         }
+                    sh 'aws --version'
+                    sh 'aws s3 ls'   
+                    sh 'terraform plan'        
+                }
             }
         }
         }
