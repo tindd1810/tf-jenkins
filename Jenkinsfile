@@ -21,7 +21,7 @@ pipeline {
                             terraform plan -no-color
                         '''     
                         input(message: 'Apply now?', ok: 'Yes')   
-                        sh 'terraform apply --no-color --auto-approve'
+                        sh 'terraform apply -no-color -auto-approve'
                     }
                 }
             }
