@@ -1,8 +1,6 @@
 pipeline {
 
-    agent {
-        label 'amz-linux' 
-    }
+    agent any
     tools {
           terraform 'my-terraform'
     }
@@ -15,6 +13,9 @@ pipeline {
 
     stages {
         stage ('Apply') {
+        agent {
+            label 'amz-linux' 
+        }
         when {
             expression { params.ApplyOrDelete == 'Apply'}
         }
@@ -46,6 +47,9 @@ pipeline {
         }
 
         stage ('Delete') {
+        agent {
+            label 'amz-linux' 
+        }
         when {
             expression { params.ApplyOrDelete == 'Delete'}
         }
