@@ -71,45 +71,5 @@ pipeline {
             }
         }
 
-        stage ('CreateAgent') {
-        when {
-            expression { params.ApplyOrDelete == 'CreateAgent'}
-        }
-        steps {
-                sh 'terraform --version'
-                dir("jenkins-node") {
-                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
-                        sh '''
-                            terraform init -no-color
-                            terraform get -update
-                            terraform plan -no-color
-                        '''     
-                        input(message: 'Apply now?', ok: 'Yes')   
-                        sh 'terraform apply -no-color -auto-approve'
-                    }
-                }
-            }
-        }
-
-        stage ('DeleteAgent') {
-        when {
-            expression { params.ApplyOrDelete == 'DeleteAgent'}
-        }
-        steps {
-                sh 'terraform --version'
-                dir("jenkins-node") {
-                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
-                        sh '''
-                            terraform init -no-color
-                            terraform get -update
-                            terraform plan -no-color
-                        '''     
-                        input(message: 'Apply now?', ok: 'Yes')   
-                        sh 'terraform destroy -no-color -auto-approve'
-                    }
-                }
-            }
-        }
-
     }
 }
