@@ -18,7 +18,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "git@github.com:hoangledinh65/terraform-module.git//vpc?ref=testing"
+  source = "github.com/hoangledinh65/terraform-module//vpc?ref=testing"
   sg-name = "hoangdl-sg-testing"
 }
 
