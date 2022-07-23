@@ -17,7 +17,7 @@ provider "aws" {
 }
 
 module "services" {
-  source = "git@github.com:hoangledinh65/terraform-module.git//services?ref=testing"
+  source = "github.com/hoangledinh65/terraform-module//services?ref=testing"
   alb-name = "hoangdl-alb-testing"
   target-group-name = "hoangdl-tg-testing"
   lambda-function-name = "hoangdl"
