@@ -8,7 +8,7 @@ pipeline {
         AWS_DEFAULT_REGION = "ap-southeast-1"
     }
     parameters {
-        choice choices: ['Apply', 'Delete', 'CreateAgent', 'DeleteAgent'], name: 'ApplyOrDelete'
+        choice choices: ['Apply', 'Delete'], name: 'ApplyOrDelete'
     }
 
     stages {
@@ -21,17 +21,6 @@ pipeline {
         }
         steps {
                 sh 'terraform --version'
-                dir("vpc") {
-                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
-                        sh '''
-                            terraform init
-                            terraform get -update
-                            terraform plan -no-color
-                        '''     
-                        input(message: 'Apply now?', ok: 'Yes')   
-                        sh 'terraform apply -no-color -auto-approve'
-                    }
-                }
                 dir("services") {
                     withCredentials([aws(credentialsId: 'aws-creds')]) { 
                         sh '''
