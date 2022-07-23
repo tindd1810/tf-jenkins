@@ -10,7 +10,7 @@ pipeline {
         AWS_DEFAULT_REGION = "ap-southeast-1"
     }
     parameters {
-        choice choices: ['Apply', 'Delete', 'CreateAgent'], name: 'ApplyOrDelete'
+        choice choices: ['Apply', 'Delete', 'CreateAgent', 'DeleteAgent'], name: 'ApplyOrDelete'
     }
 
     stages {
@@ -86,5 +86,26 @@ pipeline {
                 }
             }
         }
+
+        stage ('DeleteAgent') {
+        when {
+            expression { params.ApplyOrDelete == 'DeleteAgent'}
+        }
+        steps {
+                sh 'terraform --version'
+                dir("jenkins-node") {
+                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
+                        sh '''
+                            terraform init -no-color
+                            terraform get -update
+                            terraform plan -no-color
+                        '''     
+                        input(message: 'Apply now?', ok: 'Yes')   
+                        sh 'terraform destroy -no-color -auto-approve'
+                    }
+                }
+            }
+        }
+
     }
 }
