@@ -18,7 +18,10 @@ pipeline {
                 withCredentials([aws(credentialsId: 'aws-creds')]) {
                     sh 'aws --version'
                     sh 'aws s3 ls'   
-                    sh 'terraform plan'        
+                    sh '''
+                        terraform init
+                        terraform plan
+                        '''        
                 }
             }
         }
