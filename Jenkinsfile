@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any
+    agent {
+        label 'amz-linux' 
+    }
     tools {
           terraform 'my-terraform'
     }
@@ -9,7 +11,7 @@ pipeline {
         steps {
             sh 'terraform --version'
             dir("vpc") {
-            sh 'terraform plan'
+            sh 'aws --version'
             }
         }
         }
