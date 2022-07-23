@@ -23,7 +23,7 @@ pipeline {
                 dir("vpc") {
                     withCredentials([aws(credentialsId: 'aws-creds')]) { 
                         sh '''
-                            terraform init -migrate-state
+                            terraform init
                             terraform get -update
                             terraform plan -no-color
                         '''     
