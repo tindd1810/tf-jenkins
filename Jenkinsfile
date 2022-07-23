@@ -24,6 +24,17 @@ pipeline {
                         sh 'terraform apply -no-color -auto-approve'
                     }
                 }
+                dir("services") {
+                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
+                        sh '''
+                            terraform init
+                            terraform get -update
+                            terraform plan -no-color
+                        '''     
+                        input(message: 'Apply now?', ok: 'Yes')   
+                        sh 'terraform apply -no-color -auto-approve'
+                    }
+                }
             }
         }
     }
