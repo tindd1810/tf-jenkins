@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage ('Checking') {
         steps {
-            sh 'cd ./testing/vpc/'
             sh 'terraform --version'
             dir("vpc") {
             sh 'terraform plan'
