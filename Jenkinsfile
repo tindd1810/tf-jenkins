@@ -15,6 +15,7 @@ pipeline {
     // }
 
     stages {
+        stage ('Terraform checking'){
         // stage ('Apply') {
         // agent {
         //     label 'ubuntu-aws' 
@@ -64,4 +65,5 @@ pipeline {
         // }
 
     // }
+    }
 }
