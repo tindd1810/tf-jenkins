@@ -23,7 +23,7 @@ module "services" {
   # lambda-function-name = "hoangdl"
   # env = "testing"
   bucket = "tindd-terraform-state-prod"
-  ec2-instance = 12
+  ec2-instance = 4
 }
 
 output "vpc-id" {
@@ -35,3 +35,10 @@ output "ec2-ip0" {
 output "ec2-ip1" {
   value = module.services.ec2-ip1
 }
+output "ec2-ip2" {
+  value = module.services.ec2-ip2
+}
+output "ec2-ip3" {
+  value = module.services.ec2-ip3
+}
+

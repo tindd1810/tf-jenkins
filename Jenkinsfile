@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage ('Apply') {
         agent {
-            label 'amz-linux' 
+            label 'ubuntu-aws' 
         }
         when {
             expression { params.ApplyOrDelete == 'Apply'}
@@ -37,7 +37,7 @@ pipeline {
 
         stage ('Delete') {
         agent {
-            label 'slave01-aws' 
+            label 'ubuntu-aws' 
         }
         when {
             expression { params.ApplyOrDelete == 'Delete'}
