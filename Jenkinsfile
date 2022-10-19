@@ -37,7 +37,7 @@ pipeline {
 
         stage ('Delete') {
         agent {
-            label 'amz-linux' 
+            label 'slave01-aws' 
         }
         when {
             expression { params.ApplyOrDelete == 'Delete'}

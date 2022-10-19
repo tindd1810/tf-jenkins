@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "dinhlehoangdemo-terraform-state-testing"
+    bucket = "tindd-terraform-state-prod"
     key    = "services/terraform.tfstate"
     region = "ap-southeast-1"
   }
@@ -17,12 +17,13 @@ provider "aws" {
 }
 
 module "services" {
-  source = "github.com/hoangledinh65/terraform-module//services?ref=testing"
-  alb-name = "hoangdl-alb-testing"
-  target-group-name = "hoangdl-tg-testing"
-  lambda-function-name = "hoangdl"
-  env = "testing"
-  bucket = "dinhlehoangdemo-terraform-state-testing"
+  source = "git@github.com:tindd1810/re-modules.git//services"
+  # alb-name = "hoangdl-alb-testing"
+  # target-group-name = "hoangdl-tg-testing"
+  # lambda-function-name = "hoangdl"
+  # env = "testing"
+  bucket = "tindd-terraform-state-prod"
+  ec2-instance = 12
 }
 
 output "vpc-id" {

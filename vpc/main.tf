@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "dinhlehoangdemo-terraform-state-testing"
+    bucket = "tindd-terraform-state-prod"
     key    = "vpc/terraform.tfstate"
     region = "ap-southeast-1"
   }
@@ -17,8 +17,8 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "github.com/hoangledinh65/terraform-module//vpc?ref=testing"
-  sg-name = "hoangdl-sg-testing"
+  source = "git@github.com:tindd1810/re-modules.git//vpc"
+  sg-name = "tindd-sg-testing"
 }
 
 output "sg-id" {
