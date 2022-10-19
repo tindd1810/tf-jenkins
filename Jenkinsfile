@@ -22,7 +22,7 @@ pipeline {
         steps {
                 sh 'terraform --version'
                 dir("services") {
-                    withCredentials([aws(credentialsId: 'aws-creds')]) { 
+                    withCredentials([aws(credentialsId: 'aws-credentials')]) { 
                         sh '''
                             terraform init
                             terraform get -update
