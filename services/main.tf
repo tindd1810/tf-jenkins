@@ -26,9 +26,9 @@ module "services" {
   ec2-instance = 2
 }
 
-output "vpc-id" {
-  value = module.services.vpc-id
-}
+# output "vpc-id" {
+#   value = module.services.vpc-id
+# }
 output "ec2-ip0" {
   value = module.services.ec2-ip0
 }
