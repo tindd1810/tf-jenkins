@@ -25,14 +25,14 @@ pipeline {
         // }
             steps {
                 echo "===============Start checking Terraform================"
-                sh 'terraform --version'
+                // sh 'terraform --version'
                 // dir("services") {
-                //     withCredentials([aws(credentialsId: 'aws-credentials')]) { 
-                //         sh '''
-                //             terraform init
-                //             terraform get -update
-                //             terraform plan -no-color
-                //         '''     
+                withCredentials([aws(credentialsId: 'aws-credentials')]) { 
+                    sh '''
+                        terraform init
+                        terraform get -update
+                        terraform plan -no-color
+                    '''     
                 //         input(message: 'Apply now?', ok: 'Yes')   
                 //         sh 'terraform apply -no-color -auto-approve'
                 //     }
