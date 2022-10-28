@@ -1,9 +1,9 @@
 pipeline {
 
-    // agent any
-    agent {
-        label 'ubuntu-aws'
-    }
+    agent any
+    // agent {
+    //     label 'ubuntu-aws'
+    // }
     tools {
           terraform 'my-terraform'
     }
@@ -23,7 +23,8 @@ pipeline {
         // when {
         //     expression { params.ApplyOrDelete == 'Apply'}
         // }
-        steps {
+            steps {
+                echo "===============Start checking Terraform================"
                 sh 'terraform --version'
                 // dir("services") {
                 //     withCredentials([aws(credentialsId: 'aws-credentials')]) { 
