@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo "===============Start checking Terraform================"
                 // sh 'terraform --version'
-                // dir("services") {
+                dir("services") {
                 withCredentials([aws(credentialsId: 'aws-credentials')]) { 
                     sh '''
                         terraform init
