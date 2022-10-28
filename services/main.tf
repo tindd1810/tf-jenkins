@@ -22,7 +22,7 @@ module "services" {
   # target-group-name = "hoangdl-tg-testing"
   # lambda-function-name = "hoangdl"
   # env = "testing"
-  bucket = "tindd-terraform-state-dev"
+  bucket = "tindd-terraform-state-pro"
   ec2-instance = 2
 }
 
