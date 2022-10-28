@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "tindd-terraform-state-prod"
+    bucket = "tindd-terraform-state-dev"
     key    = "services/terraform.tfstate"
     region = "ap-southeast-1"
   }
@@ -22,8 +22,8 @@ module "services" {
   # target-group-name = "hoangdl-tg-testing"
   # lambda-function-name = "hoangdl"
   # env = "testing"
-  bucket = "tindd-terraform-state-prod"
-  ec2-instance = 4
+  bucket = "tindd-terraform-state-dev"
+  ec2-instance = 2
 }
 
 output "vpc-id" {
@@ -35,10 +35,10 @@ output "ec2-ip0" {
 output "ec2-ip1" {
   value = module.services.ec2-ip1
 }
-output "ec2-ip2" {
-  value = module.services.ec2-ip2
-}
-output "ec2-ip3" {
-  value = module.services.ec2-ip3
-}
+# output "ec2-ip2" {
+#   value = module.services.ec2-ip2
+# }
+# output "ec2-ip3" {
+#   value = module.services.ec2-ip3
+# }
 
